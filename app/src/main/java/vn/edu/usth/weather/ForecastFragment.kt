@@ -1,10 +1,12 @@
 package vn.edu.usth.weather
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class ForecastFragment : Fragment() {
@@ -13,12 +15,33 @@ class ForecastFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_forecast, container, false)
+        // Tạo LinearLayout dọc
+        val linearLayout = LinearLayout(context)
+        linearLayout.orientation = LinearLayout.VERTICAL
+        linearLayout.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
 
-        // Thiết lập màu nền cho Fragment
-        view.setBackgroundColor(Color.parseColor("#20FF0000")) // Đổi màu tùy thích
+        // Tạo TextView cho ngày
+        val textView = TextView(context)
+        textView.text = "Thursday"
+        textView.textSize = 18f
+        textView.setPadding(16, 16, 16, 16)
 
-        return view
+        // Tạo ImageView cho icon thời tiết
+        val imageView = ImageView(context)
+        imageView.setImageResource(R.drawable.disaster) // Đảm bảo tên 'disaster' là tên mới đã đổi
+        imageView.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        // Thêm TextView và ImageView vào LinearLayout
+        linearLayout.addView(textView)
+        linearLayout.addView(imageView)
+
+        // Trả về LinearLayout như View cho Fragment
+        return linearLayout
     }
 }
