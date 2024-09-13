@@ -10,7 +10,7 @@ Students are expected to:
 Student Info
 =======================
 
-* Name: *YourNameHere*
-* ID: *YourIdHere*
-* Group ID: *Your Group ID here*
-* Project Name: *Your Project Name here*
+* Name : Nguyen Doan Tuan Dat
+* ID: BI12-079
+* Group ID: Group 3
+* Project Name: Wikipedia client
