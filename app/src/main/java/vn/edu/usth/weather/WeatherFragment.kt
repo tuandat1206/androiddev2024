@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -16,16 +19,20 @@ class WeatherActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         // Thêm WeatherFragment vào weatherFragmentContainer
-        val weatherFragment = WeatherFragment()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.weatherFragmentContainer, weatherFragment)
-            .commit()
+        if (supportFragmentManager.findFragmentById(R.id.weatherFragmentContainer) == null) {
+            val weatherFragment = WeatherFragment()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.weatherFragmentContainer, weatherFragment)
+                .commit()
+        }
 
         // Thêm ForecastFragment vào forecastFragmentContainer
-        val forecastFragment = ForecastFragment()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.forecastFragmentContainer, forecastFragment)
-            .commit()
+        if (supportFragmentManager.findFragmentById(R.id.forecastFragmentContainer) == null) {
+            val forecastFragment = ForecastFragment()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.forecastFragmentContainer, forecastFragment)
+                .commit()
+        }
     }
 
     override fun onStart() {
