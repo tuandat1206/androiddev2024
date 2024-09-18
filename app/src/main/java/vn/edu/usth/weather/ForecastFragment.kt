@@ -17,14 +17,14 @@ class ForecastFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Tạo LinearLayout lớn làm nền màu xanh dương nhạt
+        // Tạo LinearLayout lớn làm nền màu xanh dương nhạt và giảm chiều cao
         val mainLayout = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
             setBackgroundColor(Color.parseColor("#E0F7FA")) // Màu xanh dương nhạt
             setPadding(16, 16, 16, 16) // Padding cho layout lớn
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
+                LinearLayout.LayoutParams.WRAP_CONTENT // Chỉ chiếm không gian cần thiết
             )
         }
 
@@ -46,7 +46,7 @@ class ForecastFragment : Fragment() {
                 setPadding(8, 8, 8, 8) // Padding cho mỗi hàng
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
-                    0, 1f // Sử dụng layout_weight để chia đều các hàng
+                    LinearLayout.LayoutParams.WRAP_CONTENT
                 )
                 gravity = Gravity.CENTER_VERTICAL // Căn giữa theo chiều dọc
             }
@@ -55,7 +55,7 @@ class ForecastFragment : Fragment() {
             val dayTextView = TextView(context).apply {
                 text = day
                 setTextColor(Color.BLACK)
-                textSize = 18f
+                textSize = 22f // Tăng kích thước chữ cho ngày
                 gravity = Gravity.CENTER
                 layoutParams = LinearLayout.LayoutParams(
                     0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f
@@ -66,7 +66,7 @@ class ForecastFragment : Fragment() {
             val weatherIcon = ImageView(context).apply {
                 setImageResource(R.drawable.disaster) // Sử dụng icon phù hợp
                 layoutParams = LinearLayout.LayoutParams(
-                    0, 100, 0.5f // Cố định kích thước icon cho đều
+                    0, 120, 0.5f // Điều chỉnh kích thước icon cho cân đối hơn
                 )
             }
 
@@ -74,7 +74,7 @@ class ForecastFragment : Fragment() {
             val forecastTextView = TextView(context).apply {
                 text = "$condition $temperature"
                 setTextColor(Color.BLACK)
-                textSize = 16f
+                textSize = 18f // Tăng kích thước chữ cho dự báo
                 gravity = Gravity.CENTER_VERTICAL
                 layoutParams = LinearLayout.LayoutParams(
                     0, LinearLayout.LayoutParams.WRAP_CONTENT, 2f

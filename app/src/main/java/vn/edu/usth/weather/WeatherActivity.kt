@@ -15,17 +15,21 @@ class WeatherActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Thêm WeatherFragment vào weatherFragmentContainer
-        val weatherFragment = WeatherFragment()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.weatherFragmentContainer, weatherFragment)
-            .commit()
+        // Thêm WeatherFragment vào weatherFragmentContainer nếu chưa có
+        if (supportFragmentManager.findFragmentById(R.id.weatherFragmentContainer) == null) {
+            val weatherFragment = WeatherFragment()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.weatherFragmentContainer, weatherFragment)
+                .commit()
+        }
 
-        // Thêm ForecastFragment vào forecastFragmentContainer
-        val forecastFragment = ForecastFragment()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.forecastFragmentContainer, forecastFragment)
-            .commit()
+        // Thêm ForecastFragment vào forecastFragmentContainer nếu chưa có
+        if (supportFragmentManager.findFragmentById(R.id.forecastFragmentContainer) == null) {
+            val forecastFragment = ForecastFragment()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.forecastFragmentContainer, forecastFragment)
+                .commit()
+        }
     }
 
     override fun onStart() {

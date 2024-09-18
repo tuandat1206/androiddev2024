@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Thời tiết USTH</string>
+    <string name="weather_today">Hôm nay</string>
+    <string name="cloudy">Nhiều mây</string>
+    <string name="rain">Mưa</string>
+    <string name="temperature_format">Nhiệt độ: %1$s°C</string>
+</resources>
