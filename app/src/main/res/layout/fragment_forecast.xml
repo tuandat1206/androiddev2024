@@ -3,13 +3,5 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mon"
-        android:drawableStart="@drawable/cloud"
-        android:drawablePadding="8dp"
-        android:textSize="18sp"
-        android:layout_marginBottom="8dp" />
+    <!-- Các hàng dự báo sẽ được thêm vào đây từ ForecastFragment -->
 </LinearLayout>

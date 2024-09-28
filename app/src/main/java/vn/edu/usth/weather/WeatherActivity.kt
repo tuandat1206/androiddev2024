@@ -1,9 +1,12 @@
 package vn.edu.usth.weather
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import android.widget.Toast
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -29,6 +32,27 @@ class WeatherActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.forecastFragmentContainer, forecastFragment)
                 .commit()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu) // Tải menu
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_refresh -> {
+                Toast.makeText(this, "Refreshing...", Toast.LENGTH_SHORT).show() // Hiển thị toast
+                true
+            }
+            R.id.action_settings -> {
+                // Khởi động PrefActivity
+                val intent = Intent(this, PrefActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

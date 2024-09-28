@@ -17,78 +17,65 @@ class ForecastFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Tạo LinearLayout lớn làm nền màu xanh dương nhạt và giảm chiều cao
+        // Tạo LinearLayout làm nền
         val mainLayout = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
-            setBackgroundColor(Color.parseColor("#E0F7FA")) // Màu xanh dương nhạt
-            setPadding(16, 16, 16, 16) // Padding cho layout lớn
+            setBackgroundColor(Color.parseColor("#E0F7FA")) // Màu nền
+            setPadding(16, 16, 16, 16) // Padding cho layout
+            gravity = Gravity.CENTER // Căn giữa layout
+        }
+
+        // Dữ liệu cho thời tiết
+        val temperature = "12°C"
+        val condition = "Cloudy"
+
+        // Tạo layout cho biểu tượng thời tiết
+        val weatherLayout = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER // Căn giữa
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT // Chỉ chiếm không gian cần thiết
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
         }
 
-        // Dữ liệu giả cho các ngày dự báo
-        val forecastData = listOf(
-            Triple("Mon", "Partly Cloudy", "24C - 31C"),
-            Triple("Tue", "Showers", "24C - 30C"),
-            Triple("Wed", "Rain", "22C - 23C"),
-            Triple("Thu", "Scattered Showers", "22C - 27C"),
-            Triple("Fri", "Mostly Cloudy", "24C - 31C"),
-            Triple("Sat", "Partly Cloudy", "22C - 30C"),
-            Triple("Sun", "Thunderstorms", "25C - 28C")
-        )
-
-        // Tạo các hàng dự báo với layout_weight chia đều
-        for ((day, condition, temperature) in forecastData) {
-            val forecastLayout = LinearLayout(context).apply {
-                orientation = LinearLayout.HORIZONTAL
-                setPadding(8, 8, 8, 8) // Padding cho mỗi hàng
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-                gravity = Gravity.CENTER_VERTICAL // Căn giữa theo chiều dọc
-            }
-
-            // TextView cho ngày
-            val dayTextView = TextView(context).apply {
-                text = day
-                setTextColor(Color.BLACK)
-                textSize = 22f // Tăng kích thước chữ cho ngày
-                gravity = Gravity.CENTER
-                layoutParams = LinearLayout.LayoutParams(
-                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f
-                )
-            }
-
-            // ImageView cho icon thời tiết
-            val weatherIcon = ImageView(context).apply {
-                setImageResource(R.drawable.disaster) // Sử dụng icon phù hợp
-                layoutParams = LinearLayout.LayoutParams(
-                    0, 120, 0.5f // Điều chỉnh kích thước icon cho cân đối hơn
-                )
-            }
-
-            // TextView cho dự báo
-            val forecastTextView = TextView(context).apply {
-                text = "$condition $temperature"
-                setTextColor(Color.BLACK)
-                textSize = 18f // Tăng kích thước chữ cho dự báo
-                gravity = Gravity.CENTER_VERTICAL
-                layoutParams = LinearLayout.LayoutParams(
-                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 2f
-                )
-            }
-
-            // Thêm các view vào layout của từng ngày
-            forecastLayout.addView(dayTextView)
-            forecastLayout.addView(weatherIcon)
-            forecastLayout.addView(forecastTextView)
-
-            // Thêm layout của từng ngày vào layout chính
-            mainLayout.addView(forecastLayout)
+        // ImageView cho icon thời tiết
+        val weatherIcon = ImageView(context).apply {
+            setImageResource(R.drawable.cloud) // Sử dụng biểu tượng thời tiết
+            layoutParams = LinearLayout.LayoutParams(200, 200) // Kích thước icon
         }
+
+        // TextView cho nhiệt độ
+        val temperatureTextView = TextView(context).apply {
+            text = temperature
+            setTextColor(Color.BLACK)
+            textSize = 32f // Kích thước chữ cho nhiệt độ
+            gravity = Gravity.CENTER
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        // TextView cho mô tả thời tiết
+        val conditionTextView = TextView(context).apply {
+            text = condition
+            setTextColor(Color.BLACK)
+            textSize = 24f // Kích thước chữ cho mô tả
+            gravity = Gravity.CENTER
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        // Thêm các view vào layout thời tiết
+        weatherLayout.addView(weatherIcon)
+        weatherLayout.addView(temperatureTextView)
+        weatherLayout.addView(conditionTextView)
+
+        // Thêm layout thời tiết vào layout chính
+        mainLayout.addView(weatherLayout)
 
         return mainLayout
     }

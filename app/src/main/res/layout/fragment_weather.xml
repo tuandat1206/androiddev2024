@@ -10,7 +10,7 @@
         android:layout_height="100dp"
         android:src="@drawable/cloud"
         android:layout_centerHorizontal="true"
-        android:contentDescription="Weather Icon" />
+        android:contentDescription="@drawable/disaster" />
 
     <TextView
         android:id="@+id/temperature"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:text="12°C"
         android:textSize="24sp"
-        android:layout_below="@id/weather_icon"
+        android:layout_below="@drawable/disaster"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp" />
 
